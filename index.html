@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="corpo">
+
+        <div class="tela">
+            <h3></h3>
+            <h1></h1>
+            <h2></h2>
+        </div>
+        
+        <div id="apagar" class="teclas" onclick="reset()">C</div>
+        <div></div>
+        <div></div>
+        <div id="menos" class="teclas" onclick="subtrair()">-</div>
+        
+        <div id="sete" class="teclas" onclick="clicar('sete')">7</div>
+        <div id="oito" class="teclas" onclick="clicar('oito')">8</div>
+        <div id="nove" class="teclas" onclick="clicar('nove')">9</div>
+        <div id="mais" class="teclas" onclick="somar()">+</div>
+        
+        
+        <div id="quatro" class="teclas" onclick="clicar('quatro')">4</div>
+        <div id="cinco" class="teclas" onclick="clicar('cinco')">5</div>
+        <div id="seis" class="teclas" onclick="clicar('seis')">6</div>
+        <div id="vezes" class="teclas" onclick="multiplicar()">x</div>
+        
+        <div id="um" class="teclas" onclick="clicar('um')">1</div>
+        <div id="dois" class="teclas" onclick="clicar('dois')">2</div>
+        <div id="tres" class="teclas" onclick="clicar('tres')">3</div>
+        <div id="dividir" class="teclas" onclick="dividir()">÷</div>
+        
+        <div id="zero" class="teclas" onclick="clicar('zero')">0</div>
+        <div id="ponto" class="teclas" onclick="clicar('ponto')">.</div>
+        <div id="igual" class="teclas" onclick="igual()">=</div>
+
+    </div>
+
+    <script>
+        let tela = document.querySelector(".tela").querySelector("h1");
+        let tela2 = document.querySelector(".tela").querySelector("h3");
+        let telaOperador = document.querySelector(".tela").querySelector("h2");
+        let operacao;
+        let a;
+
+        function clicar(a) {
+            const teclas = document.getElementById(a).innerText;
+            tela.innerText += teclas;
+        }
+
+        function somar() {
+            operacao = "soma";
+            telaOperador.innerText = "+"
+            tela2.innerText += tela.innerText ;
+            a = tela.innerText;
+
+            tela.innerText = "";
+        }
+        
+        function multiplicar() {
+            operacao = "multiplicação";
+            telaOperador.innerText = "x"
+            tela2.innerText += tela.innerText ;
+            a = tela.innerText;
+
+            tela.innerText = "";
+        }
+
+        function dividir() {
+            operacao = "divisão";
+            telaOperador.innerText = "÷"
+            tela2.innerText += tela.innerText ;
+            a = tela.innerText;
+
+            tela.innerText = "";
+        }
+
+        function subtrair() {
+            operacao = "subtrair";
+            telaOperador.innerText = "-"
+            tela2.innerText += tela.innerText ;
+            a = tela.innerText;
+
+            tela.innerText = "";
+        }
+
+
+        function igual() {
+            let b = tela.innerText;
+            let produto;
+            console.log(b);
+            
+            if(operacao === 'soma') {
+                produto = parseFloat(a) + parseFloat(b);
+            } else if (operacao === "multiplicação") {
+                produto = parseFloat(a) * parseFloat(b);
+            } else if (operacao === "divisão") {
+                produto = parseFloat(a) / parseFloat(b);
+            } else if (operacao === "subtrair") {
+                produto = parseFloat(a) - parseFloat(b);
+            }
+
+            tela.innerText = produto;
+            tela2.innerText = a + telaOperador.innerText + b;
+            telaOperador.innerText = "="
+
+        }
+
+        function reset() {
+            tela.innerText = "";
+            tela2.innerText = "";
+            telaOperador.innerText = "";
+            operacao = "";
+            a = "";
+        }
+
+    </script>
+    
+</body>
+
+</html>
